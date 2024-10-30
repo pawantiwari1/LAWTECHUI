@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Viewer</title>
+</head>
+<body>
+    <iframe id="pdfViewer" src="http://localhost:8000/file_preview/?file_path=1.pdf.pdf&case_id=66f56dd484eb5fdf81312fbd&client_id=66f56d4584eb5fdf81312fba&doc_id=66f56eb284eb5fdf81312fd5&dt1727413431425#page=10" width="100%" height="500"></iframe>
+
+    <script>
+        // Get a reference to the iframe
+        
+        // Function to scroll to a specific page
+        function scrollToPage(pageNumber) {
+            // Assuming the PDF viewer supports the `scroll` method
+            // pdfIframe.contentWindow.scroll(0, pageNumber * pdfIframe.clientHeight);
+            const pdfIframe = document.getElementById('pdfViewer');
+            let idf = pdfIframe.getAttribute("src")
+            let xx = idf.split("#")
+
+            idf = xx[0] + "#page=" + pageNumber
+            pdfIframe.src = idf
+            console.log(idf)
+            pdfIframe.contentWindow.location.reload();
+            }
+        
+        function hello(){
+            // scrollToPage(3);
+            alert("clicked")
+        }
+        // Example usage: Scroll to page 3 when a button is clicked
+        const pageButton = document.getElementById('goToPage3');
+        // pageButton.onclick({
+        //     console.log("clicked");
+        // })
+        // pageButton.addEventListener('click', () => {
+        //     console.log("clicked")
+        //     scrollToPage(3);
+
+        // });
+    </script>
+    <button id="goToPage3" onclick=scrollToPage(3)>Goto</button>
+</body>
+</html>
